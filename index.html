@@ -43,6 +43,12 @@
             border-bottom: 2px solid #0071e3;
             padding-bottom: 5px;
         }
+        h3 {
+            font-size: 17px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+        }
         p {
             margin-bottom: 15px;
             color: #1d1d1f;
@@ -75,62 +81,233 @@
             border-radius: 8px;
             margin-top: 15px;
         }
+        .lang-switcher {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .lang-btn {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid #d2d2d7;
+            border-radius: 6px;
+            background-color: #fff;
+            color: #1d1d1f;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .lang-btn:hover {
+            background-color: #f5f5f7;
+        }
+        .lang-btn.active {
+            background-color: #0071e3;
+            color: #fff;
+            border-color: #0071e3;
+        }
+        .lang-btn + .lang-btn {
+            margin-left: 8px;
+        }
+        .lang-ja, .lang-en {
+            display: none;
+        }
+        .lang-ja.visible, .lang-en.visible {
+            display: block;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>プライバシーポリシー・免責事項</h1>
-        <p class="app-name">PromptStorage</p>
-
-        <h2>はじめに</h2>
-        <p>本プライバシーポリシーは、PromptStorage（以下「本アプリ」）における、ユーザーの個人情報の取り扱いについて説明するものです。本アプリをご利用いただく前に、本ポリシーをよくお読みください。</p>
-
-        <h2>収集する情報</h2>
-        <p>本アプリは、お客様の個人情報（氏名、メールアドレス等）を直接収集することはありません。</p>
-        <p>本アプリで作成・保存されるプロンプトデータは、すべてお客様の端末内およびご自身のiCloudアカウント内にのみ保存されます。外部サーバーへのデータ送信は一切行いません。</p>
-
-        <h2>iCloudについて</h2>
-        <p>本アプリは、Apple社が提供するiCloud（CloudKit）を利用して、お客様のデバイス間でプロンプトデータを同期します。</p>
-        <ul>
-            <li>同期されるデータは、お客様のiCloudアカウント内に暗号化された状態で保存されます。</li>
-            <li>開発者がお客様のiCloudデータにアクセスすることはできません。</li>
-            <li>iCloud同期は、お客様のiCloud設定に基づいて自動的に行われます。</li>
-        </ul>
-
-        <h2>App内課金について</h2>
-        <p>本アプリでは、Pro版（買い切り）のApp内課金を提供しています。</p>
-        <ul>
-            <li>課金処理はApple社のStoreKitを通じて安全に行われます。</li>
-            <li>開発者がお客様の支払い情報にアクセスすることはありません。</li>
-            <li>購入履歴はApple IDに紐付けられ、「購入を復元する」機能でいつでも復元できます。</li>
-        </ul>
-
-        <h2>第三者への情報提供</h2>
-        <p>本アプリは、広告配信サービスやアナリティクスツール等の第三者サービスを利用していません。お客様の情報が第三者に提供されることはありません。</p>
-
-        <h2>お子様のプライバシー</h2>
-        <p>本アプリは、13歳未満のお子様を対象としたものではありません。13歳未満のお子様から意図的に個人情報を収集することはありません。</p>
-
-        <h2>プライバシーポリシーの変更</h2>
-        <p>本プライバシーポリシーは、必要に応じて変更されることがあります。重要な変更がある場合は、本ページにて通知いたします。</p>
-
-        <h2>免責事項</h2>
-        <p>本アプリのご利用にあたり、以下の点をご了承ください。</p>
-        <ul>
-            <li>本アプリは、AIプロンプトの管理を支援するツールです。保存されたプロンプトの内容については、利用者ご自身の責任で管理してください。</li>
-            <li>本アプリは、プロンプトの内容の正確性、適切性、合法性等について、いかなる保証も行いません。</li>
-            <li>本アプリの使用または使用不能により生じたいかなる損害（直接的、間接的、偶発的、特別、派生的損害を含む）についても、開発者は一切の責任を負いません。</li>
-            <li>iCloud同期の遅延、データの不整合等について、開発者は責任を負いません。重要なプロンプトは別途バックアップをお勧めします。</li>
-            <li>本アプリを通じてコピー・使用されたプロンプトにより生じた結果について、開発者は一切の責任を負いません。</li>
-        </ul>
-
-        <h2>お問い合わせ</h2>
-        <p>本プライバシーポリシーに関するご質問やお問い合わせは、以下の連絡先までお願いいたします。</p>
-        <div class="contact">
-            <p>メール：<a href="mailto:t02016098@gmail.com">t02016098@gmail.com</a></p>
+        <div class="lang-switcher">
+            <button class="lang-btn active" id="btn-ja" onclick="switchLang('ja')">日本語</button>
+            <button class="lang-btn" id="btn-en" onclick="switchLang('en')">English</button>
         </div>
 
-        <p class="update-date">最終更新日：2026年2月21日</p>
+        <!-- 日本語 -->
+        <div class="lang-ja visible" id="content-ja">
+            <h1>プライバシーポリシー・免責事項</h1>
+            <p class="app-name">PromptStorage</p>
+
+            <h2>はじめに</h2>
+            <p>本プライバシーポリシーは、PromptStorage（以下「本アプリ」）における、ユーザーの個人情報の取り扱いについて説明するものです。本アプリは、Kosei Takahashi（以下「開発者」）が提供するiOS/iPadOSアプリケーションです。本アプリをご利用いただく前に、本ポリシーをよくお読みください。</p>
+
+            <h2>収集する情報</h2>
+            <p>本アプリは、お客様の個人情報（氏名、メールアドレス等）を直接収集することはありません。</p>
+            <ul>
+                <li>本アプリはユーザー登録を必要としません</li>
+                <li>本アプリは広告を表示しません</li>
+                <li>本アプリはアナリティクスツールを使用しません</li>
+                <li>本アプリはユーザーの行動データを追跡しません</li>
+            </ul>
+
+            <h2>データの保存について</h2>
+            <p>本アプリで作成・保存されるプロンプトデータは、すべてお客様の端末内およびご自身のiCloudアカウント内にのみ保存されます。外部サーバーへのデータ送信は一切行いません。</p>
+            <ul>
+                <li><strong>デバイス上（ローカル）</strong>: すべてのデータはお使いのデバイスに保存されます</li>
+                <li><strong>iCloud（オプション）</strong>: iCloud同期が有効な場合、AppleのiCloudサービスを通じてデバイス間でデータが同期されます。同期されるデータは、お客様のiCloudアカウント内に暗号化された状態で保存されます</li>
+            </ul>
+            <p>開発者がお客様のiCloudデータにアクセスすることはできません。iCloud同期は、お客様のiCloud設定に基づいて自動的に行われます。</p>
+
+            <h2>App内課金について</h2>
+            <p>本アプリでは、Pro版（買い切り）のApp内課金を提供しています。</p>
+            <ul>
+                <li>課金処理はApple社のStoreKitを通じて安全に行われます。</li>
+                <li>開発者がお客様の支払い情報にアクセスすることはありません。</li>
+                <li>購入履歴はApple IDに紐付けられ、「購入を復元する」機能でいつでも復元できます。</li>
+            </ul>
+
+            <h2>第三者への情報提供</h2>
+            <p>本アプリは、広告配信サービスやアナリティクスツール等の第三者サービスを利用していません。お客様の情報が第三者に提供、販売、共有されることはありません。</p>
+
+            <h2>お客様の権利</h2>
+
+            <h3>EU/EEA在住の方（GDPR）</h3>
+            <p>一般データ保護規則（GDPR）に基づき、以下の権利を有します:</p>
+            <ul>
+                <li>個人データへのアクセス権</li>
+                <li>個人データの訂正権</li>
+                <li>個人データの削除権（「忘れられる権利」）</li>
+                <li>データポータビリティの権利</li>
+            </ul>
+            <p>本アプリは個人データを収集していないため、上記の権利行使の対象となるデータは存在しません。アプリ内のプロンプトデータは、アプリの削除またはiCloud設定からいつでもご自身で削除できます。</p>
+
+            <h3>カリフォルニア州在住の方（CCPA/CPRA）</h3>
+            <p>本アプリは、カリフォルニア消費者プライバシー法（CCPA）の適用基準を満たす事業者には該当しませんが、カリフォルニア州在住のユーザーのプライバシーを尊重し、以下の権利を認識しています:</p>
+            <ul>
+                <li>収集される個人情報の種類を知る権利</li>
+                <li>個人情報の削除を要求する権利</li>
+                <li>個人情報の販売に対するオプトアウト権</li>
+            </ul>
+            <p>本アプリは個人情報を収集・販売しません。</p>
+
+            <h2>Do Not Trackについて</h2>
+            <p>本アプリはユーザーの行動を一切追跡しないため、ブラウザやOSの「Do Not Track」シグナルへの特別な対応は不要ですが、本アプリはいかなる形式のトラッキングも行いません。</p>
+
+            <h2>お子様のプライバシー</h2>
+            <p>本アプリは、13歳未満のお子様を対象としたものではありません。13歳未満のお子様から意図的に個人情報を収集することはありません。</p>
+
+            <h2>プライバシーポリシーの変更</h2>
+            <p>本プライバシーポリシーは、必要に応じて変更されることがあります。重要な変更がある場合は、本ページにて通知いたします。</p>
+
+            <h2>免責事項</h2>
+            <p>本アプリのご利用にあたり、以下の点をご了承ください。</p>
+            <ul>
+                <li>本アプリは、AIプロンプトの管理を支援するツールです。保存されたプロンプトの内容については、利用者ご自身の責任で管理してください。</li>
+                <li>本アプリは、プロンプトの内容の正確性、適切性、合法性等について、いかなる保証も行いません。</li>
+                <li>本アプリの使用または使用不能により生じたいかなる損害（直接的、間接的、偶発的、特別、派生的損害を含む）についても、開発者は一切の責任を負いません。</li>
+                <li>iCloud同期の遅延、データの不整合等について、開発者は責任を負いません。重要なプロンプトは別途バックアップをお勧めします。</li>
+                <li>本アプリを通じてコピー・使用されたプロンプトにより生じた結果について、開発者は一切の責任を負いません。</li>
+            </ul>
+
+            <h2>準拠法</h2>
+            <p>本プライバシーポリシーは、日本法に準拠し、解釈されるものとします。</p>
+
+            <h2>お問い合わせ</h2>
+            <p>本プライバシーポリシーに関するご質問やお問い合わせは、以下の連絡先までお願いいたします。</p>
+            <div class="contact">
+                <p>開発者: Kosei Takahashi</p>
+                <p>メール：<a href="mailto:t02016098@gmail.com">t02016098@gmail.com</a></p>
+            </div>
+
+            <p class="update-date">最終更新日：2026年3月7日</p>
+        </div>
+
+        <!-- English -->
+        <div class="lang-en" id="content-en">
+            <h1>Privacy Policy &amp; Disclaimer</h1>
+            <p class="app-name">PromptStorage</p>
+
+            <h2>Introduction</h2>
+            <p>This Privacy Policy describes how PromptStorage ("the App"), an iOS/iPadOS application provided by Kosei Takahashi ("the Developer"), handles user information. Please read this policy carefully before using the App.</p>
+
+            <h2>Data Collection</h2>
+            <p>The App does not collect any personal data from its users.</p>
+            <ul>
+                <li>The App does not require user registration</li>
+                <li>The App does not display advertisements</li>
+                <li>The App does not use analytics tools</li>
+                <li>The App does not track user behavior</li>
+            </ul>
+
+            <h2>Data Storage</h2>
+            <p>Prompt data created within the App is stored solely on your device and in your own iCloud account. No data is transmitted to external servers.</p>
+            <ul>
+                <li><strong>On-device (Local)</strong>: All data is stored on your device</li>
+                <li><strong>iCloud (Optional)</strong>: When iCloud sync is enabled, data is synchronized across devices through Apple's iCloud service. Synced data is stored in an encrypted state within your iCloud account</li>
+            </ul>
+            <p>The Developer does not have access to your iCloud data. iCloud sync operates automatically based on your iCloud settings.</p>
+
+            <h2>In-App Purchases</h2>
+            <p>The App offers a Pro version as a one-time in-app purchase.</p>
+            <ul>
+                <li>Payment processing is handled securely through Apple's StoreKit.</li>
+                <li>The Developer does not have access to your payment information.</li>
+                <li>Purchase history is linked to your Apple ID and can be restored at any time using the "Restore Purchases" feature.</li>
+            </ul>
+
+            <h2>Third-Party Data Sharing</h2>
+            <p>The App does not use any third-party services such as advertising networks or analytics tools. Your information is never provided to, sold to, or shared with third parties.</p>
+
+            <h2>Your Rights</h2>
+
+            <h3>For EU/EEA Residents (GDPR)</h3>
+            <p>Under the General Data Protection Regulation (GDPR), you have the following rights:</p>
+            <ul>
+                <li>Right to access your personal data</li>
+                <li>Right to rectify your personal data</li>
+                <li>Right to erasure ("right to be forgotten")</li>
+                <li>Right to data portability</li>
+            </ul>
+            <p>Since the App does not collect personal data, there is no data subject to these rights. You can delete your prompt data at any time by removing the app or through your iCloud settings.</p>
+
+            <h3>For California Residents (CCPA/CPRA)</h3>
+            <p>While the App does not meet the threshold requirements for businesses subject to the California Consumer Privacy Act (CCPA), we respect the privacy of California residents and acknowledge the following rights:</p>
+            <ul>
+                <li>Right to know what personal information is collected</li>
+                <li>Right to request deletion of personal information</li>
+                <li>Right to opt-out of the sale of personal information</li>
+            </ul>
+            <p>The App does not collect or sell personal information.</p>
+
+            <h2>Do Not Track</h2>
+            <p>Since the App does not track user behavior in any way, Do Not Track signals from browsers or operating systems are not applicable. The App does not engage in any form of tracking.</p>
+
+            <h2>Children's Privacy</h2>
+            <p>The App is not intended for children under the age of 13. The App does not intentionally collect personal data from children under 13.</p>
+
+            <h2>Changes to This Policy</h2>
+            <p>This Privacy Policy may be updated as necessary. Significant changes will be communicated on this page.</p>
+
+            <h2>Disclaimer</h2>
+            <p>By using the App, you acknowledge and agree to the following:</p>
+            <ul>
+                <li>The App is a tool designed to help manage AI prompts. You are solely responsible for the content of your saved prompts.</li>
+                <li>The App makes no guarantees regarding the accuracy, appropriateness, or legality of prompt content.</li>
+                <li>The Developer shall not be liable for any damages (including direct, indirect, incidental, special, or consequential damages) arising from the use or inability to use the App.</li>
+                <li>The Developer is not responsible for iCloud sync delays or data inconsistencies. We recommend backing up important prompts separately.</li>
+                <li>The Developer shall not be liable for any consequences resulting from prompts copied or used through the App.</li>
+            </ul>
+
+            <h2>Governing Law</h2>
+            <p>This Privacy Policy is governed by and construed in accordance with the laws of Japan, without regard to its conflict of law principles.</p>
+
+            <h2>Contact</h2>
+            <p>For questions or inquiries regarding this Privacy Policy, please contact:</p>
+            <div class="contact">
+                <p>Developer: Kosei Takahashi</p>
+                <p>Email: <a href="mailto:t02016098@gmail.com">t02016098@gmail.com</a></p>
+            </div>
+
+            <p class="update-date">Last Updated: March 7, 2026</p>
+        </div>
     </div>
+
+    <script>
+        function switchLang(lang) {
+            document.getElementById('content-ja').classList.toggle('visible', lang === 'ja');
+            document.getElementById('content-en').classList.toggle('visible', lang === 'en');
+            document.getElementById('btn-ja').classList.toggle('active', lang === 'ja');
+            document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+        }
+    </script>
 </body>
 </html>
